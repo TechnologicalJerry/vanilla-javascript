@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla JavaScript Learning Repository</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <header>
+        <h1>🚀 Vanilla JavaScript Learning Repository</h1>
+        <p>Complete guide to mastering Vanilla JavaScript</p>
+    </header>
+
+    <nav>
+        <div class="nav-section">
+            <h3>Basics</h3>
+            <button onclick="loadModule('basics/variables.js')">Variables</button>
+            <button onclick="loadModule('basics/data-types.js')">Data Types</button>
+            <button onclick="loadModule('basics/operators.js')">Operators</button>
+            <button onclick="loadModule('basics/type-coercion.js')">Type Coercion</button>
+        </div>
+
+        <div class="nav-section">
+            <h3>Control Flow</h3>
+            <button onclick="loadModule('control-flow/if-else.js')">If/Else</button>
+            <button onclick="loadModule('control-flow/switch.js')">Switch</button>
+            <button onclick="loadModule('control-flow/loops.js')">Loops</button>
+        </div>
+
+        <div class="nav-section">
+            <h3>Functions</h3>
+            <button onclick="loadModule('functions/function-types.js')">Function Types</button>
+            <button onclick="loadModule('functions/parameters-vs-arguments.js')">Params vs Args</button>
+            <button onclick="loadModule('functions/arrow-functions.js')">Arrow Functions</button>
+            <button onclick="loadModule('functions/iife.js')">IIFE</button>
+            <button onclick="loadModule('functions/higher-order-functions.js')">Higher-Order</button>
+        </div>
+
+        <div class="nav-section">
+            <h3>Scope</h3>
+            <button onclick="loadModule('scope/scope-types.js')">Scope Types</button>
+            <button onclick="loadModule('scope/closures.js')">Closures</button>
+            <button onclick="loadModule('scope/this-keyword.js')">This Keyword</button>
+        </div>
+
+        <div class="nav-section">
+            <h3>Objects</h3>
+            <button onclick="loadModule('objects/object-basics.js')">Object Basics</button>
+            <button onclick="loadModule('objects/object-methods.js')">Object Methods</button>
+            <button onclick="loadModule('objects/destructuring.js')">Destructuring</button>
+            <button onclick="loadModule('objects/copy-vs-reference.js')">Copy vs Reference</button>
+        </div>
+
+        <div class="nav-section">
+            <h3>Arrays</h3>
+            <button onclick="loadModule('arrays/array-methods.js')">Array Methods</button>
+            <button onclick="loadModule('arrays/map-filter-reduce.js')">Map/Filter/Reduce</button>
+            <button onclick="loadModule('arrays/find-sort.js')">Find & Sort</button>
+            <button onclick="loadModule('arrays/destructuring.js')">Destructuring</button>
+        </div>
+
+        <div class="nav-section">
+            <h3>Strings</h3>
+            <button onclick="loadModule('strings/string-methods.js')">String Methods</button>
+            <button onclick="loadModule('strings/template-literals.js')">Template Literals</button>
+        </div>
+
+        <div class="nav-section">
+            <h3>DOM</h3>
+            <button onclick="loadModule('dom/selectors.js')">Selectors</button>
+            <button onclick="loadModule('dom/dom-manipulation.js')">DOM Manipulation</button>
+            <button onclick="loadModule('dom/create-elements.js')">Create Elements</button>
+            <button onclick="loadModule('dom/forms.js')">Forms</button>
+        </div>
+
+        <div class="nav-section">
+            <h3>Events</h3>
+            <button onclick="loadModule('events/event-basics.js')">Event Basics</button>
+            <button onclick="loadModule('events/event-delegation.js')">Event Delegation</button>
+            <button onclick="loadModule('events/bubbling-capturing.js')">Bubbling/Capturing</button>
+        </div>
+
+        <div class="nav-section">
+            <h3>Async</h3>
+            <button onclick="loadModule('async/callbacks.js')">Callbacks</button>
+            <button onclick="loadModule('async/promises.js')">Promises</button>
+            <button onclick="loadModule('async/async-await.js')">Async/Await</button>
+            <button onclick="loadModule('async/timers.js')">Timers</button>
+        </div>
+
+        <div class="nav-section">
+            <h3>API</h3>
+            <button onclick="loadModule('api/fetch-get.js')">Fetch GET</button>
+            <button onclick="loadModule('api/fetch-post.js')">Fetch POST</button>
+            <button onclick="loadModule('api/error-handling.js')">Error Handling</button>
+        </div>
+
+        <div class="nav-section">
+            <h3>Browser</h3>
+            <button onclick="loadModule('browser/local-storage.js')">Local Storage</button>
+            <button onclick="loadModule('browser/session-storage.js')">Session Storage</button>
+            <button onclick="loadModule('browser/cookies.js')">Cookies</button>
+            <button onclick="loadModule('browser/navigator-location.js')">Navigator/Location</button>
+        </div>
+
+        <div class="nav-section">
+            <h3>Error Handling</h3>
+            <button onclick="loadModule('error-handling/try-catch.js')">Try/Catch</button>
+        </div>
+
+        <div class="nav-section">
+            <h3>Modules</h3>
+            <button onclick="loadModule('modules/main.js')">Modules</button>
+        </div>
+
+        <div class="nav-section">
+            <h3>Advanced</h3>
+            <button onclick="loadModule('advanced/hoisting.js')">Hoisting</button>
+            <button onclick="loadModule('advanced/prototype.js')">Prototype</button>
+            <button onclick="loadModule('advanced/classes.js')">Classes</button>
+            <button onclick="loadModule('advanced/inheritance.js')">Inheritance</button>
+            <button onclick="loadModule('advanced/debouncing.js')">Debouncing</button>
+            <button onclick="loadModule('advanced/throttling.js')">Throttling</button>
+        </div>
+
+        <div class="nav-section">
+            <h3>Mini Projects</h3>
+            <button onclick="loadProject('todo-app')">Todo App</button>
+            <button onclick="loadProject('counter')">Counter</button>
+            <button onclick="loadProject('modal')">Modal</button>
+        </div>
+    </nav>
+
+    <main>
+        <div id="output" class="output-container">
+            <h2>Output</h2>
+            <div id="console-output"></div>
+            <div id="dom-output"></div>
+        </div>
+    </main>
+
+    <script type="module">
+        // Global function to load modules
+        window.loadModule = async function(modulePath) {
+            const outputDiv = document.getElementById('console-output');
+            const domOutputDiv = document.getElementById('dom-output');
+            
+            // Clear previous output
+            outputDiv.innerHTML = '<h3>Console Output:</h3>';
+            domOutputDiv.innerHTML = '<h3>DOM Output:</h3>';
+            
+            // Override console.log to display in UI
+            const originalLog = console.log;
+            console.log = function(...args) {
+                originalLog.apply(console, args);
+                const logEntry = document.createElement('div');
+                logEntry.className = 'log-entry';
+                logEntry.textContent = args.map(arg => 
+                    typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
+                ).join(' ');
+                outputDiv.appendChild(logEntry);
+            };
+            
+            try {
+                await import(`./${modulePath}`);
+            } catch (error) {
+                console.log('Error loading module:', error.message);
+            } finally {
+                // Restore original console.log after a delay
+                setTimeout(() => {
+                    console.log = originalLog;
+                }, 100);
+            }
+        };
+
+        // Load mini projects
+        window.loadProject = function(projectName) {
+            const domOutputDiv = document.getElementById('dom-output');
+            domOutputDiv.innerHTML = `<iframe src="mini-projects/${projectName}/index.html" style="width: 100%; height: 600px; border: 1px solid #ddd; border-radius: 8px;"></iframe>`;
+        };
+    </script>
+</body>
+</html>
+
