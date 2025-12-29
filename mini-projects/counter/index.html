@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 50px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 30px;
+        }
+        
+        .counter-display {
+            font-size: 72px;
+            font-weight: bold;
+            color: #667eea;
+            margin: 30px 0;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        .decrement-btn {
+            background: #f44336;
+            color: white;
+        }
+        
+        .decrement-btn:hover {
+            background: #d32f2f;
+            transform: scale(1.05);
+        }
+        
+        .reset-btn {
+            background: #ff9800;
+            color: white;
+        }
+        
+        .reset-btn:hover {
+            background: #f57c00;
+            transform: scale(1.05);
+        }
+        
+        .increment-btn {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .increment-btn:hover {
+            background: #45a049;
+            transform: scale(1.05);
+        }
+        
+        .history {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+        }
+        
+        .history h3 {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .history-list {
+            list-style: none;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        
+        .history-item {
+            padding: 8px;
+            margin: 5px 0;
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔢 Counter App</h1>
+        <div class="counter-display" id="counter">0</div>
+        <div class="button-group">
+            <button class="decrement-btn" id="decrement">-</button>
+            <button class="reset-btn" id="reset">Reset</button>
+            <button class="increment-btn" id="increment">+</button>
+        </div>
+        <div class="history">
+            <h3>History</h3>
+            <ul class="history-list" id="history"></ul>
+        </div>
+    </div>
+    
+    <script>
+        class Counter {
+            constructor() {
+                this.count = parseInt(localStorage.getItem('counter') || '0');
+                this.history = JSON.parse(localStorage.getItem('counterHistory') || '[]');
+                
+                this.counterDisplay = document.getElementById('counter');
+                this.decrementBtn = document.getElementById('decrement');
+                this.resetBtn = document.getElementById('reset');
+                this.incrementBtn = document.getElementById('increment');
+                this.historyList = document.getElementById('history');
+                
+                this.decrementBtn.addEventListener('click', () => this.decrement());
+                this.resetBtn.addEventListener('click', () => this.reset());
+                this.incrementBtn.addEventListener('click', () => this.increment());
+                
+                this.updateDisplay();
+                this.renderHistory();
+            }
+            
+            increment() {
+                this.count++;
+                this.addToHistory('Incremented');
+                this.updateDisplay();
+                this.save();
+            }
+            
+            decrement() {
+                this.count--;
+                this.addToHistory('Decremented');
+                this.updateDisplay();
+                this.save();
+            }
+            
+            reset() {
+                this.count = 0;
+                this.addToHistory('Reset');
+                this.updateDisplay();
+                this.save();
+            }
+            
+            updateDisplay() {
+                this.counterDisplay.textContent = this.count;
+            }
+            
+            addToHistory(action) {
+                this.history.unshift({
+                    action,
+                    value: this.count,
+                    timestamp: new Date().toLocaleTimeString()
+                });
+                if (this.history.length > 10) {
+                    this.history.pop();
+                }
+                this.renderHistory();
+            }
+            
+            renderHistory() {
+                if (this.history.length === 0) {
+                    this.historyList.innerHTML = '<li>No history yet</li>';
+                    return;
+                }
+                this.historyList.innerHTML = this.history.map(item => 
+                    `<li class="history-item">${item.action} → ${item.value} (${item.timestamp})</li>`
+                ).join('');
+            }
+            
+            save() {
+                localStorage.setItem('counter', this.count.toString());
+                localStorage.setItem('counterHistory', JSON.stringify(this.history));
+            }
+        }
+        
+        const counter = new Counter();
+    </script>
+</body>
+</html>
+
