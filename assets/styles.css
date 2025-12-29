@@ -86,7 +86,8 @@ main {
     margin-bottom: 20px;
 }
 
-#console-output, #dom-output {
+#console-output,
+#dom-output {
     background: #f8f9fa;
     padding: 20px;
     border-radius: 8px;
@@ -95,7 +96,8 @@ main {
     border: 1px solid #e0e0e0;
 }
 
-#console-output h3, #dom-output h3 {
+#console-output h3,
+#dom-output h3 {
     color: #764ba2;
     margin-bottom: 15px;
     font-size: 1.1em;
@@ -118,7 +120,7 @@ main {
     nav {
         grid-template-columns: 1fr;
     }
-    
+
     header h1 {
         font-size: 1.8em;
     }
@@ -155,4 +157,3 @@ main {
     border-radius: 4px;
     font-size: 14px;
 }
-
