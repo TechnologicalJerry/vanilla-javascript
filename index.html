@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vanilla JavaScript Learning Repository</title>
     <link rel="stylesheet" href="assets/styles.css">
 </head>
+
 <body>
     <header>
         <h1>🚀 Vanilla JavaScript Learning Repository</h1>
@@ -142,26 +144,26 @@
 
     <script type="module">
         // Global function to load modules
-        window.loadModule = async function(modulePath) {
+        window.loadModule = async function (modulePath) {
             const outputDiv = document.getElementById('console-output');
             const domOutputDiv = document.getElementById('dom-output');
-            
+
             // Clear previous output
             outputDiv.innerHTML = '<h3>Console Output:</h3>';
             domOutputDiv.innerHTML = '<h3>DOM Output:</h3>';
-            
+
             // Override console.log to display in UI
             const originalLog = console.log;
-            console.log = function(...args) {
+            console.log = function (...args) {
                 originalLog.apply(console, args);
                 const logEntry = document.createElement('div');
                 logEntry.className = 'log-entry';
-                logEntry.textContent = args.map(arg => 
+                logEntry.textContent = args.map(arg =>
                     typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
                 ).join(' ');
                 outputDiv.appendChild(logEntry);
             };
-            
+
             try {
                 await import(`./${modulePath}`);
             } catch (error) {
@@ -175,11 +177,11 @@
         };
 
         // Load mini projects
-        window.loadProject = function(projectName) {
+        window.loadProject = function (projectName) {
             const domOutputDiv = document.getElementById('dom-output');
             domOutputDiv.innerHTML = `<iframe src="mini-projects/${projectName}/index.html" style="width: 100%; height: 600px; border: 1px solid #ddd; border-radius: 8px;"></iframe>`;
         };
     </script>
 </body>
-</html>
 
+</html>
