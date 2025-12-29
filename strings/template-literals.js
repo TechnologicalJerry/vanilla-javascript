@@ -132,14 +132,14 @@ console.log('Email template:', email);
 // SQL query template
 function createQuery(table, conditions) {
     let query = `SELECT * FROM ${table}`;
-    
+
     if (conditions.length > 0) {
         const whereClause = conditions
             .map(([key, value]) => `${key} = '${value}'`)
             .join(' AND ');
         query += ` WHERE ${whereClause}`;
     }
-    
+
     return query;
 }
 
