@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Component</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        button {
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #764ba2;
+        }
+        
+        .success-btn {
+            background: #4caf50;
+        }
+        
+        .success-btn:hover {
+            background: #45a049;
+        }
+        
+        .warning-btn {
+            background: #ff9800;
+        }
+        
+        .warning-btn:hover {
+            background: #f57c00;
+        }
+        
+        .danger-btn {
+            background: #f44336;
+        }
+        
+        .danger-btn:hover {
+            background: #d32f2f;
+        }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s;
+        }
+        
+        .modal-overlay.show {
+            display: flex;
+        }
+        
+        .modal {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideDown 0.3s;
+            position: relative;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .close-btn:hover {
+            color: #333;
+        }
+        
+        .modal-body {
+            margin-bottom: 20px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .modal-footer {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Modal Component Demo</h1>
+        <div class="button-group">
+            <button onclick="openModal('default')">Default Modal</button>
+            <button class="success-btn" onclick="openModal('success')">Success Modal</button>
+            <button class="warning-btn" onclick="openModal('warning')">Warning Modal</button>
+            <button class="danger-btn" onclick="openModal('danger')">Danger Modal</button>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal-overlay" onclick="closeModalOnOverlay(event)">
+        <div class="modal" id="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modal-title">Modal Title</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                Modal content goes here.
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal()">Cancel</button>
+                <button onclick="handleConfirm()" id="confirm-btn">Confirm</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+        const confirmBtn = document.getElementById('confirm-btn');
+        
+        let currentType = 'default';
+        
+        function openModal(type) {
+            currentType = type;
+            
+            const configs = {
+                default: {
+                    title: 'Default Modal',
+                    body: 'This is a default modal. You can customize it as needed.',
+                    confirmText: 'OK'
+                },
+                success: {
+                    title: 'Success!',
+                    body: 'Your operation was completed successfully. Great job!',
+                    confirmText: 'Continue'
+                },
+                warning: {
+                    title: 'Warning',
+                    body: 'Please be careful. This action may have consequences.',
+                    confirmText: 'I Understand'
+                },
+                danger: {
+                    title: 'Danger Zone',
+                    body: 'Are you sure you want to proceed? This action cannot be undone.',
+                    confirmText: 'Yes, Delete'
+                }
+            };
+            
+            const config = configs[type] || configs.default;
+            modalTitle.textContent = config.title;
+            modalBody.textContent = config.body;
+            confirmBtn.textContent = config.confirmText;
+            
+            // Style based on type
+            confirmBtn.className = '';
+            if (type === 'success') confirmBtn.classList.add('success-btn');
+            if (type === 'warning') confirmBtn.classList.add('warning-btn');
+            if (type === 'danger') confirmBtn.classList.add('danger-btn');
+            
+            modalOverlay.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            modalOverlay.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        
+        function closeModalOnOverlay(event) {
+            if (event.target === modalOverlay) {
+                closeModal();
+            }
+        }
+        
+        function handleConfirm() {
+            console.log(`Confirmed action for ${currentType} modal`);
+            alert(`Action confirmed for ${currentType} modal!`);
+            closeModal();
+        }
+        
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('show')) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
+
