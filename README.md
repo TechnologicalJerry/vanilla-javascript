@@ -134,6 +134,7 @@ vanilla-javascript/
 ### Running the Project
 
 1. **Clone or download this repository**
+
    ```bash
    git clone https://github.com/yourusername/vanilla-javascript.git
    cd vanilla-javascript
@@ -142,6 +143,7 @@ vanilla-javascript/
 2. **Open in browser**
    - Simply open `index.html` in your browser, OR
    - Use a local server:
+
      ```bash
      # Python 3
      python -m http.server 8000
@@ -235,6 +237,7 @@ vanilla-javascript/
 ## 📖 Topics Covered
 
 ### Core Concepts
+
 - ✅ Variables (var, let, const)
 - ✅ Data Types (Primitives & Objects)
 - ✅ Operators (Arithmetic, Logical, Comparison)
@@ -246,12 +249,14 @@ vanilla-javascript/
 - ✅ Hoisting
 
 ### Data Structures
+
 - ✅ Objects (Creation, Methods, Destructuring)
 - ✅ Arrays (Methods, Map/Filter/Reduce)
 - ✅ Strings (Methods, Template Literals)
 - ✅ Copy vs Reference
 
 ### DOM & Events
+
 - ✅ DOM Selectors
 - ✅ DOM Manipulation
 - ✅ Creating Elements
@@ -261,12 +266,14 @@ vanilla-javascript/
 - ✅ Bubbling & Capturing
 
 ### Asynchronous JavaScript
+
 - ✅ Callbacks
 - ✅ Promises
 - ✅ Async/Await
 - ✅ Timers (setTimeout, setInterval)
 
 ### Browser APIs
+
 - ✅ Fetch API (GET, POST, Error Handling)
 - ✅ Local Storage
 - ✅ Session Storage
@@ -274,6 +281,7 @@ vanilla-javascript/
 - ✅ Navigator & Location
 
 ### Advanced Topics
+
 - ✅ Prototypes & Inheritance
 - ✅ ES6 Classes
 - ✅ ES6 Modules
@@ -285,16 +293,19 @@ vanilla-javascript/
 Three complete, functional projects demonstrating real-world JavaScript:
 
 ### 1. Todo App (`mini-projects/todo-app/`)
+
 - Add, toggle, and delete todos
 - Local storage persistence
 - Clean, modern UI
 
 ### 2. Counter App (`mini-projects/counter/`)
+
 - Increment, decrement, reset
 - History tracking
 - Local storage
 
 ### 3. Modal Component (`mini-projects/modal/`)
+
 - Multiple modal types
 - Click outside to close
 - Keyboard support (Escape key)
@@ -365,6 +376,7 @@ This repository follows JavaScript best practices:
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to:
+
 - Add more examples
 - Improve documentation
 - Fix bugs
