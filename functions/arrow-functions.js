@@ -15,6 +15,29 @@ function traditionalAdd(a, b) {
 // Arrow function equivalent
 const arrowAdd = (a, b) => a + b;
 
+
+
+
+
+
+
+function add(a, b) {
+  return a + b;
+}
+
+console.log(add(2, 3));
+
+
+const add = (a, b) => a + b;
+
+console.log(add(2, 3));
+
+
+
+
+
+
+
 console.log('Traditional:', traditionalAdd(5, 3));
 console.log('Arrow:', arrowAdd(5, 3));
 
